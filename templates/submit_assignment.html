@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Assignment - {{ assignment.title }}</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'submit.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a href="{% url 'assignment_list' %}">Assignment Portal</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'assignment_list' %}">Home</a></li>
+            <li><a href="{% url 'create_assignment' %}">Create Assignment</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Submission Form -->
+    <div id="main-container">
+        <h1>Submit Assignment: {{ assignment.title }}</h1>
+        <form method="post" enctype="multipart/form-data" class="submission-form">
+            {% csrf_token %}
+            
+            <!-- Display form errors -->
+            {% if form.errors %}
+                <div class="form-errors">
+                    <p>Please correct the errors below:</p>
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <!-- Student ID -->
+            <div class="form-group">
+                <label for="id_student_id">Student ID:</label>
+                {{ form.student_id }}
+                <small class="form-help-text">Enter your unique student ID.</small>
+            </div>
+
+            <!-- Student Name -->
+            <div class="form-group">
+                <label for="id_student_name">Student Name:</label>
+                {{ form.student_name }}
+                <small class="form-help-text">Enter your full name.</small>
+            </div>
+
+            <!-- File Upload -->
+            <div class="form-group">
+                <label for="id_file">Upload File:</label>
+                {{ form.file }}
+                <small class="form-help-text">Allowed formats: PDF, DOC, DOCX, TXT.</small>
+            </div>
+
+            <!-- Comments -->
+            <div class="form-group">
+                <label for="id_comments">Comments:</label>
+                {{ form.comments }}
+                <small class="form-help-text">Optional: Add any additional comments.</small>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit" class="btn submit-button">
+                    <i class="fas fa-paper-plane"></i> Submit Assignment
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Assignment Portal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

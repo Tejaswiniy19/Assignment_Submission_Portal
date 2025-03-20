@@ -1,0 +1,174 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #343a40;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav .nav-links li {
+    margin-left: 25px;
+}
+
+nav .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav .nav-links a:hover {
+    color: #17a2b8;
+}
+
+/* Main Container */
+#main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.form-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+.create-assignment-form .title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.create-assignment-form .field {
+    margin-bottom: 20px;
+}
+
+.create-assignment-form .field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #343a40;
+    margin-bottom: 5px;
+}
+
+.create-assignment-form .field input,
+.create-assignment-form .field textarea,
+.create-assignment-form .field select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.create-assignment-form .field input:focus,
+.create-assignment-form .field textarea:focus,
+.create-assignment-form .field select:focus {
+    border-color: #17a2b8;
+    box-shadow: 0 0 5px rgba(23, 162, 184, 0.5);
+    outline: none;
+}
+
+.create-assignment-form .field textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.create-btn {
+    background: #17a2b8;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.create-btn:hover {
+    background: #138496;
+    transform: translateY(-2px);
+}
+
+.create-btn:active {
+    transform: translateY(0);
+}
+
+/* Footer */
+footer {
+    background: #343a40;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 60px;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    nav .nav-links {
+        margin-top: 10px;
+    }
+
+    nav .nav-links li {
+        margin-left: 0;
+        margin-right: 15px;
+    }
+
+    #main-container {
+        padding: 20px;
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+}

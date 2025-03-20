@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Feedback</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #eef2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2c3e50;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        nav .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav .nav-links li {
+            margin-left: 25px;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: #18bc9c;
+        }
+
+        /* Main Container */
+        #main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .form-container h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container form .field {
+            margin-bottom: 20px;
+        }
+
+        .form-container form .field label {
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .form-container form .field input,
+        .form-container form .field textarea,
+        .form-container form .field select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-container form .field input:focus,
+        .form-container form .field textarea:focus,
+        .form-container form .field select:focus {
+            border-color: #18bc9c;
+            box-shadow: 0 0 8px rgba(24, 188, 156, 0.5);
+            outline: none;
+        }
+
+        .form-container form .field textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-container form .create-btn {
+            background: #18bc9c;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        .form-container form .create-btn:hover {
+            background: #148f77;
+            transform: translateY(-2px);
+        }
+
+        .form-container form .create-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+
+            nav .nav-links {
+                margin-top: 10px;
+            }
+
+            nav .nav-links li {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+
+            #main-container {
+                padding: 20px;
+            }
+
+            .form-container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="#">Logo</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="main-container">
+        <div class="form-container">
+            <h1>Leave Feedback for {{ submission.student_name }}</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="field">
+                    <label for="id_teacher_name">Teacher Name:</label>
+                    <input type="text" name="teacher_name" id="id_teacher_name" required>
+                </div>
+                <div class="field">
+                    <label for="id_comments">Comments:</label>
+                    <textarea name="comments" id="id_comments" required></textarea>
+                </div>
+                <div class="field">
+                    <label for="id_remarks">Remarks:</label>
+                    <select name="remarks" id="id_remarks" required>
+                        {% for value, label in form.remarks.field.choices %}
+                            <option value="{{ value }}" {% if form.remarks.value == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="create-btn">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Your Website</p>
+    </footer>
+</body>
+</html>

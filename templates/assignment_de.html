@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Detail - {{ assignment.title }}</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'detail.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a href="{% url 'assignmentst_list' %}">Assignment Portal</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'create_assignment' %}">Create Assignment</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+<br><br><br>
+    <!-- Assignment Detail Section -->
+    <div id="main-container">
+        <h1>{{ assignment.title }}</h1>
+        <div class="assignment-detail">
+            <p><strong>Description:</strong> {{ assignment.description }}</p>
+            <p><strong>Deadline:</strong> {{ assignment.deadline }}</p>
+            <p><strong>Created At:</strong> {{ assignment.created_at }}</p>
+            <p><strong>Updated At:</strong> {{ assignment.updated_at }}</p>
+        </div>
+    </div>
+<br><br><br><br><br>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Assignment Portal. All rights reserved. <a href="{% url 'home' %}" style="color: blue; text-decoration: underline; font-weight: bold;">Home</a></p>
+        </div>
+    </footer>
+</body>
+</html>

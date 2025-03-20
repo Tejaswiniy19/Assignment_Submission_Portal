@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Home - Assignment Portal</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'staff.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a href="{% url 'assignment_list' %}">Staff Portal</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'staff' %}">Home</a></li>
+            <li><a href="{% url 'create_assignment' %}">Create Assignments</a></li>
+            {% if assignment and assignment.id %}
+                <li><a href="{% url 'assignment_detail' assignment.id %}">View Details</a></li>
+            {% else %}
+                <li><a href="#" class="disabled">View Details (No Assignment)</a></li>
+            {% endif %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard">
+        <h1>Welcome, {{ request.user.username }}</h1>
+        <div class="dashboard-cards">
+            <div class="card">
+                <i class="fas fa-book-open"></i>
+                <h3>Total Assignments</h3>
+                <p>{{ total_assignments }}</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-check-circle"></i>
+                <h3>Completed Submissions</h3>
+                <p>{{ total_submissions }}</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-comments"></i>
+                <h3>Completed Results</h3>
+                <p>{{ pending_feedback }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assignment List Section -->
+    <section class="assignment-list">
+        <h2>Assignments Submissions</h2>
+        <ul>
+            {% for assignment in assignments %}
+                <li>
+                    <a href="{% url 'view_submissions' assignment.id %}">
+                        <span class="assignment-id">Assignment {{ assignment.id }}</span>
+                        <span class="assignment-title">{{ assignment.title }}</span>
+                        <span class="assignment-deadline">Deadline: {{ assignment.deadline }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We provide a seamless platform for teachers to manage assignments and feedback.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'assignment_list' %}">Home</a></li>
+                    <li><a href="{% url 'create_assignment' %}">Create Assignments</a></li>
+                    <li><a href="#">Submissions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: staff@assignmentportal.com</p>
+                <p>Phone: +91 6301594486</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Assignment Portal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

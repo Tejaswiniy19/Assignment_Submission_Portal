@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'calibri';
+}
+
+body {
+    background: #000;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type=checkbox] {
+    margin-right: 5px;
+    cursor: pointer;
+    width: auto;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(53, 41, 161);
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#main-container {
+    min-width: 450px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    width: 400px;
+    height: 500px;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.login-form,
+.signup-form {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    overflow: hidden;
+    text-align: center;
+    position: absolute;
+    border-radius: 20px;
+    background: rgb(253, 253, 253);
+    animation: .8s ease-in-out forwards
+}
+
+.login-form {
+    transform: translate3d(0px, 0, 0px);
+}
+
+.signup-form {
+    transform: translate3d(0px, 0, -200px);
+}
+
+.login-form::before,
+.signup-form::before {
+    content: "";
+    position: absolute;
+    left: -50%;
+    bottom: -5%;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    transform: rotate(45deg);
+    background-color: rgba(214, 214, 214, 0.24);
+}
+
+.title {
+    font-size: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.field {
+    position: relative;
+    margin-top: 50px;
+}
+
+form input {
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+    width: 100%;
+    padding: 0 30px 5px 0;
+}
+
+.field label {
+    left: 0;
+    bottom: 5px;
+    cursor: text;
+    transition: .3s;
+    position: absolute;
+}
+
+.field .fa {
+    right: 1%;
+    top: 0;
+    position: absolute;
+}
+
+.field input:focus+label,
+.field input:not(:placeholder-shown)+label {
+    bottom: 25px;
+}
+
+section {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0 50px 0;
+    font-size: 15px;
+}
+
+section label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.856);
+}
+
+button {
+    position: absolute;
+    font-size: 2rem;
+}
+
+.login-btn,
+.signup-btn {
+    width: 100%;
+    border: none;
+    font-size: 20px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: .3s;
+    color: white;
+    background: #1a1a1a;
+    padding: 5px;
+}
+
+.login-btn {
+    margin: 0 0 35px 0;
+}
+
+.login-btn:hover,
+.signup-btn:hover {
+    opacity: .9;
+}
+
+.bottom {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.other {
+    margin: 10px 0 30px;
+}
+
+.separator {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    background: rgba(0, 0, 0, 0.349);
+    width: 40%;
+    height: 1px;
+}
+
+.alternatives span {
+    margin: 0 2px;
+    cursor: pointer;
+    transition: .3s;
+    font-size: 25px;
+    padding: 10px;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.alternatives span:hover {
+    transform: scale(0.9);
+}
+
+.fa-google {
+    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+}
+
+.fa-microsoft {
+    background: conic-gradient(from -90deg, #f44336 90deg, #4caf50 90deg 180deg, #2196f3 180deg 270deg, #ffc107 270deg) 50% 50%/100% 150% no-repeat;
+}
+
+.fa-dropbox {
+    background: #3d9ae8;
+}
+
+.fa-linkedin {
+    background: rgb(17, 98, 190);
+}
+
+.signup-form .field {
+    margin-top: 40px;
+}
+
+.fa-github {
+    background: #000;
+}
+
+.signup-form section {
+    margin: 20px 0 10px 0;
+}
+
+.signup-btn {
+    margin: 20px 0;
+}
+
+.signup-form .bottom {
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.above {
+    animation-name: above;
+}
+
+.below {
+    animation-name: below;
+}
+
+@keyframes above {
+    0% {
+        transform: translate3d(0, 0, -500px);
+    }
+
+    50% {
+        transform: translate3d(70%, 0, -100px);
+    }
+
+    100% {
+        transform: translate3d(0px, 0, 0px);
+    }
+}
+
+@keyframes below {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(-70%, 0, 0px);
+    }
+
+    100% {
+        transform: translate3d(0px, 0, -200px);
+    }
+}

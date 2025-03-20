@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Assignment Portal</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'homestyle.css' %}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{% url 'home' %}">Assignment Portal</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'assignmentst_list' %}">Assignments</a></li>
+                
+                <!-- Dropdown for Assignment Details -->
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Assignment Details <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        {% for assignment in assignments %}
+                            <a href="{% url 'assignment_de' assignment.id %}">Assignment {{ assignment.id }}: {{ assignment.title }}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li><a href="{% url 'send_email' %}">FeedbackUs</a></li>
+                <li><a href="{% url 'about' %}">Aboutus</a></li>
+                <li><a href="{% url 'register' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to the Assignment Portal</h1>
+            <p>Manage your assignments, submit your work, and get feedback from teachers—all in one place.</p>
+            <a href="{% url 'assignmentst_list' %}" class="cta-btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Assignment List Section -->
+    <section class="assignment-list" style="background-color: #fff; padding: 30px;">
+        <h2 style="font-size: 28px; color: #343a40;">Assignments Submissions</h2>
+        <ul>
+            {% for assignment in assignments %}
+                <li style="background-color: #f8f9fa; margin-bottom: 10px; border-radius: 8px;">
+                    <a href="{% url 'viewst_submissi' assignment.id %}">
+                        <span class="assignment-id" style="font-weight: 600; color: #17a2b8;">Assignment {{ assignment.id }}</span>
+                        <span class="assignment-title" style="font-size: 16px; color: #343a40;">{{ assignment.title }}</span>
+                        <span class="assignment-deadline" style="font-size: 14px; color: #666;">Deadline: {{ assignment.deadline }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why Choose Us?</h2>
+        <div class="feature-cards">
+            <div class="card">
+                <i class="fas fa-book-open"></i>
+                <h3>Easy Assignment Management</h3>
+                <p>Create, submit, and track assignments effortlessly.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Teacher Feedback</h3>
+                <p>Receive timely feedback from your teachers.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-users"></i>
+                <h3>Collaborate with Peers</h3>
+                <p>Work together with classmates on group assignments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial-cards">
+            <div class="testimonial">
+                <p>"This platform has made managing assignments so much easier. Highly recommended!"</p>
+                <h4>- Nandhini</h4>
+            </div>
+            <div class="testimonial">
+                <p>"The feedback system is fantastic. It helps me improve my work quickly."</p>
+                <h4>- Jagadeesh Raja </h4>
+            </div>
+            <div class="testimonial">
+                <p>"Great tool for collaboration. My team loves it!"</p>
+                <h4>-Sruthi</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We provide a seamless platform for students and teachers to manage assignments and feedback.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'assignment_list' %}">Assignments</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: support@assignmentportal.com</p>
+                <p>Phone: +91 6301594486</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Assignment Portal. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+
+</html>

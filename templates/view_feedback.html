@@ -1,0 +1,69 @@
+<!-- view_feedback.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback for Submission: {{ submission.student_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .feedback-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .feedback-container p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .feedback-container p strong {
+            color: #333;
+        }
+        .no-feedback {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>feedback for Submission: {{ submission.student_name }}</h1>
+<br><br><br>
+    <div class="feedback-container">
+        {% if feedback %}
+        <h2>Teacher: {{ feedback.teacher_name }}</p></h2>
+            <h2>Comments: {{ feedback.comments }}<br></h2>
+            <h2>remarks:{{ feedback.remarks }}<br></h2>
+            <h2>Date:</strong> {{ feedback.created_at }}</p></h2>
+        {% else %}
+            <p class="no-feedback">No feedback has been submitted yet.</p>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'assignmentst_list' %}" class="back-link">Back to Assignments</a>
+</body>
+</html>

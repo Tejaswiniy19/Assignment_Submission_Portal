@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formers Section with Hover Effect</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <!-- Formers Section -->
+    <section class="formers-section">
+        <h2>Our Formers</h2>
+        <div class="formers-container">
+            <!-- Former 1 -->
+            <div class="former-card">
+                <div class="image-container">
+                    <img src="{% static 'Main Photo.jpg' %}" alt="Former 1" class="default-image">
+                    
+                </div>
+                <h3>Tejaswini Yerra</h3>
+                <p>Position:Devolper</p>
+            </div>
+
+            <!-- Former 2 -->
+           
+
+            <!-- Former 3 -->
+            
+    </section>
+
+    <!-- JavaScript for Hover Effect -->
+    <script src="{% static 'scripts.js' %}"></script>
+    <p>&copy; 2025 Assignment Portal. All rights reserved.<a href="{% url 'home' %}" style="color: blue; text-decoration: underline; font-weight: bold;">Home</a>
+    </p>
+</body>
+</html>

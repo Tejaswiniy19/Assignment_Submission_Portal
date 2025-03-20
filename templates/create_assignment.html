@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Assignment</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'create.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a href="{% url 'home' %}">Assignment Portal</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'assignment_list' %}">Assignments</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div id="main-container">
+        <div class="form-container">
+            <div class="create-assignment-form">
+                <div class="title"> Create Assignment</div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="field">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                    </div>
+                    <div class="field">
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                    </div>
+                    <div class="field">
+                        {{ form.deadline.label_tag }}
+                        {{ form.deadline }}
+                    </div>
+                    <button type="submit" class="create-btn">Create Assignment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Assignment Portal. All rights reserved.<a href="{% url 'staff' %}" style="color: blue; text-decoration: underline; font-weight: bold;">Home</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

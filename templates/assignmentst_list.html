@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'list.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a href="{% url 'assignment_list' %}">Assignment Portal</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'assignment_list' %}">Home</a></li>
+            <li><a href="{% url 'create_assignment' %}">Create Assignment</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Assignments List Section -->
+    <div id="main-container">
+        <h1>Assignments</h1>
+        
+        <ul class="assignments-list">
+            {% for assignment in assignments %}
+                <li class="assignment-item">
+                    <h2>{{ assignment.title }}</h2>
+                    
+                    <div class="action-buttons">
+                        <a href="{% url 'assignment_de' assignment.id %}" class="btn">View Details</a>
+                        
+                        <a href="{% url 'submit_assignment' assignment.id %}" class="btn">Submit Assignment</a>
+                        {% if submissions %}
+                        {% for submission in submissions %}
+                        <a href="{% url 'view_feedback' submission.id %}" class="btn">View Feedback</a>
+                        {% endfor %}
+                        {% endif %}
+                       
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}<br><br><br><br>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Assignment Portal. All rights reserved.<a href="{% url 'home' %}" style="color: blue; text-decoration: underline; font-weight: bold;">Home</a></p>
+        </div>
+    </footer>
+</body>
+</html>

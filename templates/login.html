@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div id="main-container">
+        <div class="form-container">
+            <div class="login-form">
+                <div class="title">LOGIN</div>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="text" name="username" id="username" placeholder=" " required>
+                        <label for="username">Username</label>
+                        <span class="fa fa-user"></span>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="password" id="password" placeholder=" " required>
+                        <label for="password">Password</label>
+                        <span class="fa fa-lock"></span>
+                    </div>
+                    <section>
+                        <label for="remember"><input type="checkbox" id="remember">Remember Me</label>
+                        <a href="#">Forget Password?</a>
+                    </section>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+                <div class="bottom">
+                    <div class="other">
+                        <div class="separator">Or</div>
+                        <div class="alternatives">
+                            <a href="#"><span class="fab fa-google"></span></a>
+                            <a href="#"><span class="fab fa-dropbox"></span></a>
+                            <a href="#"><span class="fab fa-github"></span></a>
+                            <a href="#"><span class="fab fa-microsoft"></span></a>
+                            <a href="#"><span class="fab fa-linkedin"></span></a>
+                        </div>
+                    </div>
+                    <div>Don't have an Account?&nbsp;<a href="{% url 'register' %}" class="signup-switch" onclick="swapPos(this)">Sign up</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-decoration: underline;
+            font-size: 2.5rem;
+            color: #db2323;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Additional Styling for Interactive Elements */
+        .container {
+            text-align: center;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Staff Face Authentication</h1>
+        <h2>Note:It takes the camera access for the face authentication click the bottom button for authentication </h2><br>
+        <h2>Make sure you are in the lighting Area...</h2><br>
+        <a href="{% url 'check_face' %}" id="checkFaceLink">👉Staff Direct Login👈</a>
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        // JavaScript for interactivity
+        document.getElementById('checkFaceLink').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            document.getElementById('message').textContent = 'Checking face... Please wait.';
+            
+            // Redirect to the check_face view after a short delay
+            setTimeout(function() {
+                window.location.href = "{% url 'check_face' %}";
+            }, 1000); // 1 second delay
+        });
+    </script>
+</body>
+</html>

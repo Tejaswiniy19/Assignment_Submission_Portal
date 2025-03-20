@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div id="main-container">
+        <div class="form-container">
+            <div class="signup-form">
+                <div class="title">SIGN UP</div>
+                <form method="post" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="text" name="username" id="username" placeholder=" " required>
+                        <label for="username">Username</label>
+                        <span class="fa fa-user"></span>
+                    </div>
+                    <div class="field">
+                        <input type="email" name="email" id="email" placeholder=" " required>
+                        <label for="email">Email</label>
+                        <span class="fa fa-envelope"></span>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="password1" id="password1" placeholder=" " required>
+                        <label for="password1">Password</label>
+                        <span class="fa fa-lock"></span>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="password2" id="password2" placeholder=" " required>
+                        <label for="password2">Confirm Password</label>
+                        <span class="fa fa-lock"></span>
+                    </div>
+                    <section>
+                        <label for="agree"><input type="checkbox" id="agree">I agree to all&nbsp;<a href="#">Terms & Conditions</a></label>
+                    </section>
+                    <button type="submit" class="signup-btn">Register</button>
+                </form>
+                <div class="bottom">
+                    <span>Already Registered?&nbsp;<a href="{% url 'login' %}" class="login-switch" onclick="swapPos(this)">Login</a></span>
+                    <span>Staff Registration?&nbsp;<a href="{% url 'index' %}" class="login-switch" onclick="swapPos(this)">Staff direct login</a></span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

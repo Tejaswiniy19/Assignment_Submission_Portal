@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - {{ assignment.title }}</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'detail.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a href="{% url 'home' %}">Assignment Portal</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'assignment_list' %}">Assignments</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Search Form -->
+    <div id="main-container">
+        <h1>Feedback for {{ assignment.title }}</h1>
+        <form method="get" action="{% url 'viewst_submissi' assignment.id %}" class="search-form">
+            <input type="text" name="student_id" placeholder="Enter Student ID" value="{{ request.GET.student_id }}">
+            <button type="submit" class="btn search-button">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </form>
+
+        <!-- Submissions List -->
+      
+        <ul class="submissions-list">
+            {% if submissions %}
+                {% for submission in submissions %}
+                    <li class="submission-item">
+                        <div class="submission-details">
+                            <p><strong>Student ID:</strong> {{ submission.student_id }}</p>
+                            <p><strong>Student Name:</strong> {{ submission.student_name }}</p>
+                            <p><strong>File:</strong> <a href="{{ submission.file.url }}" target="_blank">{{ submission.file.name }}</a></p>
+                            <p><strong>Comments:</strong> {{ submission.comments }}</p>
+                            <p><strong>Submitted At:</strong> {{ submission.submitted_at }}</p>
+                        </div>
+                        <div class="submission-actions">
+                            <!-- View Feedback Button -->
+                            <a href="{% url 'view_feedback' submission.id %}" class="btn">View Result</a>
+        
+                            <!-- Delete Submission Form -->
+                            <form action="{% url 'delete_submission' submission.id %}" method="post" class="delete-form">
+                                {% csrf_token %}
+                                <button type="submit" class="btn delete-button" onclick="return confirm('Are you sure you want to delete this submission?');">
+                                    <i class="fas fa-trash"></i> Delete Submission
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p>No submissions found.</p>
+            {% endif %}
+        </ul>
+        <a href="{% url 'assignmentst_list' %}" class="back-link">Back to Assignments</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Assignment Portal. All rights reserved.<a href="{% url 'home' %}" style="color: blue; text-decoration: underline; font-weight: bold;">Home</a></p>
+        </div>
+    </footer>
+</body>
+</html>
